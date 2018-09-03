@@ -1,0 +1,27 @@
+  <%=flash.notice%>
+  <%= form_with model: @user, local: true do |form| %>
+  <% if @user.errors.any? %>
+    <div  id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <p> Username:</br> <%= form.text_field :username%> </p>
+    <p> Email:</br> <%= form.text_field :email%> </p>    
+    <p> DOB:</br> <%=date_select("user", "dob")%></p>
+    <p> Address:</br> <%= form.text_field :address%></p>    
+    <p> Phone:</br> <%= form.text_field :phone%></p>
+    <p> Password:</br> <%= form.password_field :password%></p>
+    <p> Password Confirmation:</br> <%= form.password_field :password_confirmation%> </p>
+    <%= form.submit :Save %>
+    <%= form.submit :Clear, type: :reset %>
+  <% end %>
